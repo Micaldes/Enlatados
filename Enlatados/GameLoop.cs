@@ -10,6 +10,9 @@ namespace Enlatados
 {
     internal class GameLoop
     {
+        private const int FPS = 60;
+        private const int SCREEN_WIDTH = 1280;
+        private const int SCREEN_HEIGTH = 720;
         public void Run()
         {
             Init();
@@ -30,12 +33,12 @@ namespace Enlatados
         {
 
 
-            //Raylib.InitWindow(
-            //    _mazeScreenWidth - 1,
-            //    _mazeScreenHeight + 48,
-            //    "Gameloop");
+            Raylib.InitWindow(
+                SCREEN_WIDTH,
+                SCREEN_HEIGTH,
+                "Enlatados");
 
-            //Raylib.SetTargetFPS(FPS);
+            Raylib.SetTargetFPS(FPS);
         }
 
         private void ReadInput()
