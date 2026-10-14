@@ -10,20 +10,49 @@ namespace Enlatados
 {
     internal class GameLoop
     {
-        private const int FPS = 60;
+
+        private const double deltaFijo = 1 / 60d;
+
+
+        private const int FPS = 120;
         private const int SCREEN_WIDTH = 1280;
         private const int SCREEN_HEIGTH = 720;
+
+
+        //Gestión de tiempos
+        double  currentTime;
+        double lastTime;
+        double  lag  = 0;
+        double deltaTime;
         public void Run()
         {
             Init();
 
+
+            lastTime = Raylib.GetTime();
             while (!Raylib.WindowShouldClose())
             {
+
+
+
+                currentTime = Raylib.GetTime();
+                deltaTime = currentTime - lastTime; //Tiempo transcurrido entre dos frames consecutivos o dicho de otro modo tiempo que tarda en procesarse el frame anterior
+                lastTime = currentTime;
+
+                lag += deltaTime;
+
+
                 ReadInput();
+                while (lag >= deltaFijo)
+                {
+                    Update(deltaFijo);
 
-                Update();
+                    lag -= deltaFijo;
+                }
+               
 
-                Render();
+                Render(); //Es independiente al paso del tiempo del juego.
+
             }
 
             Raylib.CloseWindow();
@@ -47,10 +76,9 @@ namespace Enlatados
             //_player.ReadInput();
         }
 
-        private void Update()
+        private void Update(double deltaFijo)
         {
-            //Hay que hacer fixedDelta
-            float deltaTime = Raylib.GetFrameTime();
+           
 
             // Update game logic
             //_player.Update(deltaTime);
