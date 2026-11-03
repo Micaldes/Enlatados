@@ -13,7 +13,9 @@ namespace Enlatados
     {
 
         private const double deltaFijo = 1 / 60d;
-
+        //intervalo de tiempo constante que queremos que transcurra
+        //entre actualizaciones de la simulación
+      
 
         private const int FPS = 120;
         private const int SCREEN_WIDTH = 1280;
