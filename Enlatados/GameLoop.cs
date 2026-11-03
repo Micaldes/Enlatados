@@ -22,6 +22,7 @@ namespace Enlatados
         private const int SCREEN_WIDTH = 1280;
         private const int SCREEN_HEIGTH = 720;
 
+        //Doble salto
         private player;
 
         //Gestión de tiempos
