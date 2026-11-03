@@ -12,7 +12,7 @@ namespace Enlatados
     internal class GameLoop
     {
 
-        private const double deltaFijo = 1 / 60d;
+        private const float deltaFijo = 1 / 60d;
         //intervalo de tiempo constante que queremos que transcurra
         //entre actualizaciones de la simulación
       
@@ -23,10 +23,10 @@ namespace Enlatados
 
 
         //Gestión de tiempos
-        double  currentTime;
-        double lastTime;
-        double  lag  = 0;
-        double deltaTime;
+        float  currentTime;
+        float lastTime;
+        float  lag  = 0;
+        float deltaTime;
         public void Run()
         {
             Init();
@@ -79,7 +79,7 @@ namespace Enlatados
             //_player.ReadInput();
         }
 
-        private void Update(double deltaFijo)
+        private void Update(float  deltaFijo)
         {
            
 

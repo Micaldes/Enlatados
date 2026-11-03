@@ -2,5 +2,5 @@
 
 public interface IRenderComponent
 {
-	
+	public void Render();
 }

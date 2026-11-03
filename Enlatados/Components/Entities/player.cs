@@ -9,13 +9,18 @@ public class Player : GameObject
     public IInput InputComponent { get; set; }
 
 
-    public Player(Vector2 position, float speed) : base(position, speed)
+    public Player(IInput position, speed = 0) : base(position, speed) // Por defecto speed = 0 (ya que da igual la velocidad)
     {
-        InputComponent = new inputComponent();
+        position = new inputComponent();
+        
+        MovementComponent = new movementPlayerComponent(); 
+                                                                                           
+    }
 
-        MovementComponent = new movementPlayerComponent();
-
-
+    public void update(){
+        InputComponent.Input(); //Leo entrada
+        float nextPos = InputComponent.nextPosition; //Le estoy pasando position del mouse
+        MovementComponent.move(nextPos,  deltaTime);
     }
    
 }

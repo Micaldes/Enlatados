@@ -12,11 +12,11 @@ public class GameObject : IGameObject
     public float speed { get; set; }
     public Vector2 position { get; set; } 
 
-
-
 	//public 	IInput InputComponent { get; set; }  --> Solo lo tendrá player, asi evitamos que tengan esta propiedad las latas
 	public IMovementComponent MovementComponent { get; set; }
 	public IRenderComponent RenderComponent { get; set; }
+
+    
 
     public GameObject(Vector2 position, float speed)
     {
@@ -26,10 +26,9 @@ public class GameObject : IGameObject
     }
 
 
-    public void Update(double deltaTime)
-    {
-
-	}
+  public void update(float deltaTime){
+    MovementComponent.
+  }
 
     public void Render()
 	{

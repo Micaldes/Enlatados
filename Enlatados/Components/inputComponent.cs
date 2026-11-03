@@ -4,31 +4,12 @@ using System.Numerics;
 
 public class inputComponent : IInput
 {
-    Vector2 nextPosition;
-    public inputComponent(Vector2 position)
-    {
-        nextPosition = position;
-    }
+    public Vector2 nextPosition { get; set; }
 	
     //Actualizar el componente de input en cada iteracion
-	public void updateInput()
+	public void Input()
     {
-        if (Raylib.IsKeyDown(KeyboardKey.W))
-        {
-            nextPosition = new Vector2(0, -1);
-        }
-        else if (Raylib.IsKeyDown(KeyboardKey.S))
-        {
-            nextPosition = new Vector2(0, 1);
-        }
-        else if (Raylib.IsKeyDown(KeyboardKey.A))
-        {
-            nextPosition = new Vector2(-1, 0);
-        }
-        else if (Raylib.IsKeyDown(KeyboardKey.D))
-        {
-            nextPosition = new Vector2(1, 0);
-        }
-
+    // Para permitir juego por teclado
+    nextPosition = Raylib.GetMousePosition(); //En cada iteracion se actualiza la posicion del mouse
     }
 }
