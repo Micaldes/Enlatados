@@ -9,18 +9,17 @@ public class Player : GameObject
     public IInput InputComponent { get; set; }
 
 
-    public Player(IInput position, speed = 0) : base(position, speed) // Por defecto speed = 0 (ya que da igual la velocidad)
+    public Player(Vector2 position, float speed = 0) : base(position, speed) // Por defecto speed = 0 (ya que da igual la velocidad)
     {
-        position = new inputComponent();
-        
-        MovementComponent = new movementPlayerComponent(); 
-                                                                                           
+        texture = Raylib.LoadTexture("img/Cursor.png");
+        MovementComponent = new movementPlayerComponent();
+        InputComponent = new inputComponent();                                                                             
     }
 
-    public void update(){
-        InputComponent.Input(); //Leo entrada
-        float nextPos = InputComponent.nextPosition; //Le estoy pasando position del mouse
-        MovementComponent.move(nextPos,  deltaTime);
+    public void Update(float deltaTime){
+        InputComponent.Input(); //Actualizamos la pos del ratón
+        float nextPos = InputComponent.nextPosition; //Guardamos el atributo donde se almacena la pos del ratón
+        position = MovementComponent.move(nextPos,  deltaTime);
     }
    
 }

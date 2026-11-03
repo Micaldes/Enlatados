@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
+using Enlatados.Components;
 
 namespace Enlatados
 {
@@ -21,6 +22,7 @@ namespace Enlatados
         private const int SCREEN_WIDTH = 1280;
         private const int SCREEN_HEIGTH = 720;
 
+        private player;
 
         //Gestión de tiempos
         float  currentTime;
@@ -58,6 +60,7 @@ namespace Enlatados
 
             }
 
+            Raylib.UnloadTexture(_player.texture);
             Raylib.CloseWindow();
         }
 
@@ -71,20 +74,22 @@ namespace Enlatados
                 "Enlatados");
 
             Raylib.SetTargetFPS(FPS);
+
+            player = new Player(new Vector2(0,0));
+
+            Raylib.HideCursor(); //Ocultamos el cursor para que se vea sólo el png de la mira
         }
 
-        private void ReadInput()
-        {
-            // Read input
-            //_player.ReadInput();
-        }
+        // private void ReadInput()
+        // {
+        //     // Read input
+        //     //_player.ReadInput();
+        // }
 
-        private void Update(float  deltaFijo)
+        private void Update(float deltaFijo)
         {
-           
-
             // Update game logic
-            //_player.Update(deltaTime);
+            player.Update(deltaFijo);
         }
 
         private void Render()
@@ -96,7 +101,7 @@ namespace Enlatados
             Raylib.ClearBackground(Color.Black);
 
             // Render: draw player
-            //_player.Render();
+            player.Render();
 
             // Render: Title and FPS
             //Raylib.DrawText("Hello NoGameloop!", 16, _mazeScreenHeight + 12, 20, Color.Yellow);

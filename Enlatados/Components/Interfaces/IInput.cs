@@ -3,7 +3,7 @@
 public interface IInput
 {
 
-	public void updateInput();
+	public void Input();
 
 
 }

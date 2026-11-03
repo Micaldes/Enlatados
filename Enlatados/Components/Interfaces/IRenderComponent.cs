@@ -2,5 +2,5 @@
 
 public interface IRenderComponent
 {
-	public void Render();
+	public void Render(Vector2 position, Texture2D texture);
 }
