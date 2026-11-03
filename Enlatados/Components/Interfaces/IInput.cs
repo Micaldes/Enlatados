@@ -2,5 +2,8 @@
 
 public interface IInput
 {
-	
+
+	public void updateInput();
+
+
 }
