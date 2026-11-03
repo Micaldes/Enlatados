@@ -11,6 +11,7 @@ public class GameObject : IGameObject
 
     public float speed { get; set; }
     public Vector2 position { get; set; } 
+    public Texture2D texture { get; set; } 
 
 	//public 	IInput InputComponent { get; set; }  --> Solo lo tendrá player, asi evitamos que tengan esta propiedad las latas
 	public IMovementComponent MovementComponent { get; set; }
@@ -26,13 +27,13 @@ public class GameObject : IGameObject
     }
 
 
-  public void update(float deltaTime){
-    MovementComponent.
+  public void Update(float deltaTime){
+
   }
 
     public void Render()
 	{
-
+    RenderComponent.Render(position, texture);
 	}
 
 }

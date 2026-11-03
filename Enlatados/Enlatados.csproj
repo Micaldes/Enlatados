@@ -8,6 +8,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Raylib-cs" Version="8.1.0-rc.1" />
-	</ItemGroup>
+    <PackageReference Include="Raylib-cs" Version="8.1.0-rc.1" />
+
+    <Content Include="../img/**/*"
+             Link="img/%(RecursiveDir)%(Filename)%(Extension)"
+             CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>
