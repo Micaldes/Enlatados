@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Enlatados.Components;
+namespace Enlatados.Components.Entities;
 
 public class Player : GameObject
 {

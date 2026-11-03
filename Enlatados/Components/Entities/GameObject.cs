@@ -3,7 +3,7 @@
 
 namespace Enlatados.Components.Interfaces;
 
-public class GameObject
+public class GameObject : IGameObject
 {
 
 
@@ -14,5 +14,20 @@ public class GameObject
 
 
 
+    public void Update(double deltaTime)
+
+    {
+
+	}
+    public void Render()
+	{
+
+	}
 
 }
+
+
+
+
+
+
