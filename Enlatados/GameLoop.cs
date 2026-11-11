@@ -75,7 +75,7 @@ namespace Enlatados
 
             Raylib.SetTargetFPS(FPS);
 
-            _player = new Player(new Vector2(0,0), Raylib.LoadTexture("../img/Cursor.png"));
+            _player = new Player(new Vector2(0,0), Raylib.LoadTexture("img/Cursor.png"));
 
             Raylib.HideCursor(); //Ocultamos el cursor para que se vea sólo el png de la mira
         }
