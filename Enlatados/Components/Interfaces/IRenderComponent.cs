@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Enlatados.Components;
+using System;
 
 public interface IRenderComponent
 {
-	public void Render(Vector2 position, Texture2D texture);
+
+	
+	public void Render();
 }

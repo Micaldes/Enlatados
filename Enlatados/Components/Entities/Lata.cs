@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -9,10 +10,10 @@ namespace Enlatados.Components
 {
     public class Lata : GameObject
     {
-    
-        public Lata(Vector2 position, float speed) : base(position, speed)
-        {
-            MovementComponent = new movementLataComponent();
+        private  float speed { get; set; } // Para la lata 
+        public Lata(Vector2 position, float speed) : base(position, new Texture2D())
+        { 
+            MovementComponent = new movementLataComponent(this);
             
         }
 

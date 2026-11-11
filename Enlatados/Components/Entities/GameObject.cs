@@ -1,42 +1,48 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Numerics;
 
 
 namespace Enlatados.Components;
 
-public class GameObject : IGameObject
+public class GameObject 
 {
 
     //Atributos
-
-    public float speed { get; set; }
     public Vector2 position { get; set; } 
     public Texture2D texture { get; set; } 
 
-	//public 	IInput InputComponent { get; set; }  --> Solo lo tendrá player, asi evitamos que tengan esta propiedad las latas
+	public 	IInputComponent InputComponent { get; set; }  
 	public IMovementComponent MovementComponent { get; set; }
 	public IRenderComponent RenderComponent { get; set; }
 
     
 
-    public GameObject(Vector2 position, float speed)
+    public GameObject(Vector2 position, Texture2D texture)
     {
         this.position = position;
-        this.speed = speed;
-        this.RenderComponent = new renderComponent(); //Para evitar su llamada en cada entidad, se inicializa en el constructor de la clase base.
+        this.texture = texture;
     }
 
 
-  public void Update(float deltaTime){
 
+
+  public void Input()
+    {
+        InputComponent.Input();
+    }
+  public void Update(double deltaTime){
+        MovementComponent.move();
   }
 
     public void Render()
 	{
-    RenderComponent.Render(position, texture);
+    RenderComponent.Render();
 	}
 
 }
+
+
 
 
 

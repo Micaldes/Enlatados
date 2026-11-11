@@ -1,11 +1,21 @@
-﻿using System;
+﻿using System.Numerics;
+using Raylib_cs;
+using Enlatados.Components;
 
 public class renderComponent : IRenderComponent
 {
-	public void Render(Vector2 position, Texture2D texture){
+    private readonly GameObject _gameObject;
+
+    public renderComponent(GameObject gameObject)
+    {
+        _gameObject = gameObject;
+    }
+
+    public void Render()
+    {
         Raylib.DrawTextureV(
-            texture,
-            position,
+            _gameObject.texture,
+            _gameObject.position,
             Color.White
         );
     }

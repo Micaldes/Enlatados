@@ -13,7 +13,7 @@ namespace Enlatados
     internal class GameLoop
     {
 
-        private const float deltaFijo = 1 / 60d;
+        private const double deltaFijo = 1 / 60d;
         //intervalo de tiempo constante que queremos que transcurra
         //entre actualizaciones de la simulación
       
@@ -22,13 +22,13 @@ namespace Enlatados
         private const int SCREEN_WIDTH = 1280;
         private const int SCREEN_HEIGTH = 720;
 
-        private player;
+        private Player _player;
 
         //Gestión de tiempos
-        float  currentTime;
-        float lastTime;
-        float  lag  = 0;
-        float deltaTime;
+        double  currentTime;
+        double lastTime;
+        double  lag  = 0;
+        double deltaTime;
         public void Run()
         {
             Init();
@@ -75,21 +75,21 @@ namespace Enlatados
 
             Raylib.SetTargetFPS(FPS);
 
-            player = new Player(new Vector2(0,0));
+            _player = new Player(new Vector2(0,0), Raylib.LoadTexture("../img/Cursor.png"));
 
             Raylib.HideCursor(); //Ocultamos el cursor para que se vea sólo el png de la mira
         }
 
-        // private void ReadInput()
-        // {
-        //     // Read input
-        //     //_player.ReadInput();
-        // }
+        private void ReadInput()
+        {
+            // Read input
+            _player.Input();
+        }
 
-        private void Update(float deltaFijo)
+        private void Update(double deltaFijo)
         {
             // Update game logic
-            player.Update(deltaFijo);
+            _player.Update(deltaFijo); //No uso deltaFijo pero lo paso igual para el resto de objects
         }
 
         private void Render()
@@ -101,7 +101,7 @@ namespace Enlatados
             Raylib.ClearBackground(Color.Black);
 
             // Render: draw player
-            player.Render();
+            _player.Render();
 
             // Render: Title and FPS
             //Raylib.DrawText("Hello NoGameloop!", 16, _mazeScreenHeight + 12, 20, Color.Yellow);

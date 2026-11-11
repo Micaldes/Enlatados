@@ -1,25 +1,25 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Numerics;
-
+using Enlatados.Components;
 
 namespace Enlatados.Components;
 
 public class Player : GameObject
 {
-    public IInput InputComponent { get; set; }
+
+    public Vector2 mousePos { get; set;  }
 
 
-    public Player(Vector2 position, float speed = 0) : base(position, speed) // Por defecto speed = 0 (ya que da igual la velocidad)
+    public Player(Vector2 position, Texture2D texture): base (position,texture)  
     {
-        texture = Raylib.LoadTexture("img/Cursor.png");
-        MovementComponent = new movementPlayerComponent();
-        InputComponent = new inputComponent();                                                                             
+       // texture = Raylib.LoadTexture("../img/Cursor.png");
+        InputComponent = new PlayerinputComponent(this);   
+        MovementComponent = new movementPlayerComponent(this);
+        RenderComponent = new renderComponent(this);
+                                                                            
     }
 
-    public void Update(float deltaTime){
-        InputComponent.Input(); //Actualizamos la pos del ratón
-        float nextPos = InputComponent.nextPosition; //Guardamos el atributo donde se almacena la pos del ratón
-        position = MovementComponent.move(nextPos,  deltaTime);
-    }
+  
    
 }
