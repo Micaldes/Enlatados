@@ -5,40 +5,30 @@ using System.Numerics;
 
 namespace Enlatados.Components;
 
-public class GameObject : IObject
+public class GameObject : IGameObject
 {
 
-    //Atributos
-    public Vector2 position { get; set; } 
-    public Texture2D texture { get; set; } 
-
-	public 	IInputComponent InputComponent { get; set; }  
-	public IMovementComponent MovementComponent { get; set; }
-	public IRenderComponent RenderComponent { get; set; }
-
-    
+    public IInputComponent? InputComponent { get; set; }
+    public IMovementComponent? MovementComponent { get; set; }
+    public IRenderComponent? RenderComponent { get; set; }
 
     public GameObject(Vector2 position, Texture2D texture)
     {
-        this.position = position;
-        this.texture = texture;
+
     }
-
-
-
-
-  public void Input()
+    public void Input()
     {
-        InputComponent.Input();
+        InputComponent?.Input();
     }
-  public void Update(double deltaTime){
-        MovementComponent.move();
-  }
+    public void Update(float deltaTime)
+    {
+        MovementComponent?.Move(deltaTime);
+    }
 
     public void Render()
-	{
-    RenderComponent.Render();
-	}
+    {
+        RenderComponent?.Render();
+    }
 
 }
 

@@ -2,20 +2,21 @@
 using Raylib_cs;
 using Enlatados.Components;
 
-public class renderComponent : IRenderComponent
+using Component = Enlatados.Components.Entities.Component;
+public class RenderComponent : Component, IRenderComponent
 {
-    private readonly IObject _gameObject;
+    public Texture2D texture { get; set; }
+    public RenderComponent(Texture2D texture, GameObject owner) : base(owner) { 
 
-    public renderComponent(IObject gameObject)
-    {
-        _gameObject = gameObject;
+        this.texture = texture;
+
     }
 
     public void Render()
     {
         Raylib.DrawTextureV(
-            _gameObject.texture,
-            _gameObject.position,
+            texture,
+            Owner.MovementComponent.position,
             Color.White
         );
     }

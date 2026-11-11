@@ -13,7 +13,7 @@ namespace Enlatados.Components
         private  float speed { get; set; } // Para la lata 
         public Lata(Vector2 position, float speed) : base(position, new Texture2D())
         { 
-            MovementComponent = new movementLataComponent(this);
+            MovementComponent = new LataMovementComponent(this);
             
         }
 

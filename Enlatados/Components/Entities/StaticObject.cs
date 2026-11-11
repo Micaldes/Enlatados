@@ -2,7 +2,7 @@
 using Raylib_cs;
 using System.Numerics;
 
-public class StaticObject : IObject
+public class StaticObject : IGameObject
 {
     public bool dirty = true; //El lienzo necesita ser pintado
 
@@ -24,7 +24,15 @@ public class StaticObject : IObject
 
         _targetCanvas = Raylib.LoadRenderTexture(width, height); //Estamos reservando el lienzo en VRAM
     }
+    public void Input()
+    {
 
+    }
+    public void Update(float deltaTime)
+    {
+
+    }
+  
     public void Render()
     {
         // Si está dirty, escalamos la textura original al tamaño completo del canvas

@@ -62,7 +62,7 @@ namespace Enlatados
             }
 
             _bg.Unload();                          // Destruye el canvas de la GPU
-            Raylib.UnloadTexture(_player.texture);
+            Raylib.UnloadTexture(_player.RenderComponent.texture);
             Raylib.CloseWindow();
         }
 
@@ -91,7 +91,7 @@ namespace Enlatados
         private void Update(double deltaFijo)
         {
             // Update game logic
-            _player.Update(deltaFijo); //No uso deltaFijo pero lo paso igual para el resto de objects
+            _player.Update((float)deltaFijo); //No uso deltaFijo pero lo paso igual para el resto de objects
         }
 
         private void Render()

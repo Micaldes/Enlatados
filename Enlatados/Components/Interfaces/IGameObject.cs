@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 
 //Para diferenciar objetos dinámicos de estáticos
-    public interface IObject
+public interface IGameObject
 
-    {
+{
+    public void Input();
+    public void Update(float deltaTime);
+    public void Render(); 
 
 
-    public Vector2 position { get; set; }
-    public Texture2D texture { get; set; }
-
-    public void Render(); //Comun a todos los objetos
-    
-    }
+}
 

@@ -3,15 +3,15 @@ using System;
 using System.Numerics;
 using Enlatados.Components;
 
-public class PlayerinputComponent : IInputComponent
+using Component = Enlatados.Components.Entities.Component;
+public class PlayerInputComponent : Component, IInputComponent
 {
-    private Player _player;
-    public PlayerinputComponent(Player Player) { _player = Player; }
-   // public Vector2 nextPos { get; set; }
-    //Actualizar el componente de input en cada iteracion
+    public Vector2 mousePos { get; set; }
+
+    public PlayerInputComponent(GameObject owner) : base(owner){}
+
     public void Input()
     {
-
-        _player.mousePos = Raylib.GetMousePosition(); //En cada iteracion se actualiza la posicion del mouse
+        mousePos = Raylib.GetMousePosition(); //En cada iteracion se actualiza la posicion del mouse
     }
 }

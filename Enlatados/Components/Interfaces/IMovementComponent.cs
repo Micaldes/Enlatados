@@ -2,7 +2,6 @@
 
 public interface IMovementComponent
 {
-  
-
-   public void move(); //metodo de la actualizacion
+    public Vector2 position { get; set; }
+    public void Move(float deltaTime); //metodo de la actualizacion
 }
