@@ -23,6 +23,7 @@ namespace Enlatados
         private const int SCREEN_HEIGTH = 720;
 
         private Player _player;
+        private StaticObject _bg;
 
         //Gestión de tiempos
         double  currentTime;
@@ -60,6 +61,7 @@ namespace Enlatados
 
             }
 
+            _bg.Unload();                          // Destruye el canvas de la GPU
             Raylib.UnloadTexture(_player.texture);
             Raylib.CloseWindow();
         }
@@ -76,7 +78,7 @@ namespace Enlatados
             Raylib.SetTargetFPS(FPS);
 
             _player = new Player(new Vector2(0,0), Raylib.LoadTexture("img/Cursor.png"));
-
+            _bg = new StaticObject(new Vector2(0, 0), Raylib.LoadTexture("img/background.png"), SCREEN_WIDTH, SCREEN_HEIGTH);
             Raylib.HideCursor(); //Ocultamos el cursor para que se vea sólo el png de la mira
         }
 
@@ -99,10 +101,13 @@ namespace Enlatados
 
             // Rener: clean background
             Raylib.ClearBackground(Color.Black);
+            
+            //Render background
+            _bg.Render();
 
             // Render: draw player
             _player.Render();
-
+          
             // Render: Title and FPS
             //Raylib.DrawText("Hello NoGameloop!", 16, _mazeScreenHeight + 12, 20, Color.Yellow);
             //RenderFpsCounter();

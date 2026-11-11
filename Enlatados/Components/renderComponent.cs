@@ -4,9 +4,9 @@ using Enlatados.Components;
 
 public class renderComponent : IRenderComponent
 {
-    private readonly GameObject _gameObject;
+    private readonly IObject _gameObject;
 
-    public renderComponent(GameObject gameObject)
+    public renderComponent(IObject gameObject)
     {
         _gameObject = gameObject;
     }

@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Enlatados.Components;
 
-public class GameObject 
+public class GameObject : IObject
 {
 
     //Atributos
