@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 public interface IGameObject
 
 {
+    public void Initialize();
     public void Input();
     public void Update(float deltaTime);
     public void Render(); 

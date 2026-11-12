@@ -10,7 +10,7 @@ using Enlatados.Components;
 namespace Enlatados
 {
 
-    internal class GameLoop
+    public class GameLoop : ISubject<PlayerEventData>
     {
 
         private const double deltaFijo = 1 / 60d;
@@ -24,6 +24,7 @@ namespace Enlatados
 
         private Player _player;
         private StaticObject _bg;
+        private SoundSystem _soundSystem;
 
         //Gestión de tiempos
         double  currentTime;
@@ -69,8 +70,13 @@ namespace Enlatados
 
             Raylib.SetTargetFPS(FPS);
 
-            _player = new Player(new Vector2(0,0), Raylib.LoadTexture("img/Cursor.png"));
-            _bg = new StaticObject(new Vector2(0, 0), Raylib.LoadTexture("img/background.png"), SCREEN_WIDTH, SCREEN_HEIGTH);
+            _player = new Player(new Vector2(0,0), Raylib.LoadTexture("Assets/Images/Cursor.png"), this);
+            _bg = new StaticObject(new Vector2(0, 0), Raylib.LoadTexture("Assets/Images/Background.png"), SCREEN_WIDTH, SCREEN_HEIGTH);
+
+            _soundSystem = new SoundSystem();
+            _soundSystem.Initialize();
+            AddObserver(_soundSystem);
+
             Raylib.HideCursor(); //Ocultamos el cursor para que se vea sólo el png de la mira
         }
 
@@ -99,6 +105,8 @@ namespace Enlatados
 
             // Render: draw player
             _player.Render();
+
+            _soundSystem.Render();
           
             // Render: Title and FPS
             //Raylib.DrawText("Hello NoGameloop!", 16, _mazeScreenHeight + 12, 20, Color.Yellow);
@@ -118,6 +126,31 @@ namespace Enlatados
             int x = Raylib.GetScreenWidth() - textWidth - fpsMargin;
             //int y = _mazeScreenHeight + 12;
             //Raylib.DrawText(fpsText, x, y, fpsFontSize, Color.Green);
+        }
+
+        //Patrón observer
+        private List<IObserver<PlayerEventData>> _observers = new List<IObserver<PlayerEventData>>();
+        public void AddObserver(IObserver<PlayerEventData> observer)
+        {
+            _observers.Add(observer);
+        }
+
+        public void RemoveObserver(IObserver<PlayerEventData> observer)
+        {
+            _observers.Remove(observer);
+        }
+
+        public void NotifyObservers(PlayerEventData data)
+        {
+            foreach(IObserver<PlayerEventData> observer in _observers)
+            {
+                observer.OnUpdate(data);
+            }
+        }
+
+        public void SendPlayerEvent(Events eventType)
+        {
+            NotifyObservers(new PlayerEventData(eventType));
         }
     }
 }

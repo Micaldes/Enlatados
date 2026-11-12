@@ -17,5 +17,6 @@ public class RenderComponent : Component, IRenderComponent
             Owner.MovementComponent.position,
             Color.White
         );
+
     }
 }

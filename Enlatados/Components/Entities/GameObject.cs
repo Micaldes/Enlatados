@@ -7,15 +7,22 @@ namespace Enlatados.Components;
 
 public class GameObject : IGameObject
 {
+    public GameLoop Parent { get; private set; }
 
     public IInputComponent? InputComponent { get; set; }
     public IMovementComponent? MovementComponent { get; set; }
     public IRenderComponent? RenderComponent { get; set; }
 
-    public GameObject(Vector2 position, Texture2D texture)
+    public GameObject(GameLoop parent)
+    {
+        this.Parent = parent;
+    }
+
+    public void Initialize()
     {
 
     }
+
     public void Input()
     {
         InputComponent?.Input();

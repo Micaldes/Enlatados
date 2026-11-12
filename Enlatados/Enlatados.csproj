@@ -10,8 +10,18 @@
 	<ItemGroup>
     <PackageReference Include="Raylib-cs" Version="8.1.0-rc.1" />
 
-    <Content Include="../img/**/*"
-             Link="img/%(RecursiveDir)%(Filename)%(Extension)"
-             CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../img/**/*" Link="img/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Assets\Images\Background.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Assets\Images\Cursor.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Assets\Sounds\Shoot.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 </Project>

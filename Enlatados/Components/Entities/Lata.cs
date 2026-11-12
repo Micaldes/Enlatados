@@ -11,7 +11,7 @@ namespace Enlatados.Components
     public class Lata : GameObject
     {
         private  float speed { get; set; } // Para la lata 
-        public Lata(Vector2 position, float speed) : base(position, new Texture2D())
+        public Lata(Vector2 position, float speed, GameLoop parent) : base(parent)
         { 
             MovementComponent = new LataMovementComponent(this);
             

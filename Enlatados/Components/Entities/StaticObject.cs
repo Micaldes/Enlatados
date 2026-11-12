@@ -24,6 +24,11 @@ public class StaticObject : IGameObject
 
         _targetCanvas = Raylib.LoadRenderTexture(width, height); //Estamos reservando el lienzo en VRAM
     }
+
+    public void Initialize()
+    {
+
+    }
     public void Input()
     {
 

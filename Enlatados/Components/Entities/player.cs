@@ -7,7 +7,7 @@ namespace Enlatados.Components;
 
 public class Player : GameObject
 {
-    public Player(Vector2 position, Texture2D texture): base (position,texture)  
+    public Player(Vector2 position, Texture2D texture, GameLoop parent): base (parent)  
     {
        // texture = Raylib.LoadTexture("../img/Cursor.png");
         InputComponent = new PlayerInputComponent(this);   

@@ -13,6 +13,11 @@ public class PlayerInputComponent : Component, IInputComponent
     public void Input()
     {
         mousePos = Raylib.GetMousePosition(); //En cada iteracion se actualiza la posicion del mouse
-        mouseLeftPressed = Raylib.IsMouseButtonPressed(MouseButton.Left);
+        
+        if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+        {
+            mouseLeftPressed = true;
+            Owner.Parent.SendPlayerEvent(Events.PlayerShoots);
+        }
     }
 }

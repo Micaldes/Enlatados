@@ -18,7 +18,8 @@ public class PlayerMovementComponent : Component, IMovementComponent
         if (Owner.InputComponent.mouseLeftPressed)
         {
             Console.WriteLine("MOUSE LEFT BUTTON PRESSED");
+            Owner.InputComponent.mouseLeftPressed = false;
         }
-	}
+    }
 
 }
