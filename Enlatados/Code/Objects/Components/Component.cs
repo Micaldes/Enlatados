@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Enlatados.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enlatados.Components;
+namespace Enlatados.Code.Objects.Components;
 
 public abstract class Component
 {
@@ -12,6 +13,6 @@ public abstract class Component
 
     public Component(GameObject owner)
     {
-        this.Owner = owner;
+        Owner = owner;
     }
 }

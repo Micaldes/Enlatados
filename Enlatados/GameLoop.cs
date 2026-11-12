@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 using Enlatados.Components;
+using static ImageAssets.ImageID;
 
 namespace Enlatados
-{
 
+{
     public class GameLoop : ISubject<PlayerEventData>
     {
 
@@ -19,12 +20,11 @@ namespace Enlatados
       
 
         private const int FPS = 120;
-        private const int SCREEN_WIDTH = 1280;
-        private const int SCREEN_HEIGTH = 720;
+        private const int SCREEN_WIDTH = 1920;
+        private const int SCREEN_HEIGTH = 1080;
 
         private Player _player;
         private StaticObject _bg;
-        private SoundSystem _soundSystem;
 
         //Gestión de tiempos
         double  currentTime;
@@ -56,8 +56,10 @@ namespace Enlatados
                 Render(); //Es independiente al paso del tiempo del juego.
             }
 
-            _bg.Unload();                          // Destruye el canvas de la GPU
-            Raylib.UnloadTexture(_player.RenderComponent.texture);
+            ServiceLocator.GetService<ImageLoader>().Destroy();
+            ServiceLocator.GetService<SoundLoader>().Destroy();
+            ServiceLocator.Clear();
+
             Raylib.CloseWindow();
         }
 
@@ -69,13 +71,19 @@ namespace Enlatados
                 "Enlatados");
 
             Raylib.SetTargetFPS(FPS);
+            Raylib.ToggleFullscreen();
 
-            _player = new Player(new Vector2(0,0), Raylib.LoadTexture("Assets/Images/Cursor.png"), this);
-            _bg = new StaticObject(new Vector2(0, 0), Raylib.LoadTexture("Assets/Images/Background.png"), SCREEN_WIDTH, SCREEN_HEIGTH);
-
-            _soundSystem = new SoundSystem();
+            SoundLoader _soundSystem = new SoundLoader();
             _soundSystem.Initialize();
+            ServiceLocator.RegisterService<SoundLoader>(_soundSystem);
+
+            ImageLoader _imageSystem = new ImageLoader();
+            _imageSystem.Initialize();
+            ServiceLocator.RegisterService<ImageLoader>(_imageSystem);
             AddObserver(_soundSystem);
+
+            _player = new Player(new Vector2(0, 0), ServiceLocator.GetService<ImageLoader>().GetTexture(Cursor), this);
+            _bg = new StaticObject(new Vector2(0, 0), ServiceLocator.GetService<ImageLoader>().GetTexture(Background), SCREEN_WIDTH, SCREEN_HEIGTH);
 
             Raylib.HideCursor(); //Ocultamos el cursor para que se vea sólo el png de la mira
         }
@@ -106,8 +114,8 @@ namespace Enlatados
             // Render: draw player
             _player.Render();
 
-            _soundSystem.Render();
-          
+            ServiceLocator.GetService<SoundLoader>().Render();
+
             // Render: Title and FPS
             //Raylib.DrawText("Hello NoGameloop!", 16, _mazeScreenHeight + 12, 20, Color.Yellow);
             //RenderFpsCounter();
@@ -148,7 +156,7 @@ namespace Enlatados
             }
         }
 
-        public void SendPlayerEvent(Events eventType)
+        public void SendPlayerEvent(EventId eventType)
         {
             NotifyObservers(new PlayerEventData(eventType));
         }

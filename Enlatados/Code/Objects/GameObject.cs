@@ -37,6 +37,10 @@ public class GameObject : IGameObject
         RenderComponent?.Render();
     }
 
+    public void Destroy()
+    {
+
+    }
 }
 
 

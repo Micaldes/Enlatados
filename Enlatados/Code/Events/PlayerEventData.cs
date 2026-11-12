@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 public struct PlayerEventData
 {
-    public Events EventType;
+    public EventId EventType;
 
-    public PlayerEventData(Events eventType)
+    public PlayerEventData(EventId eventType)
     {
         EventType = eventType;
     }
