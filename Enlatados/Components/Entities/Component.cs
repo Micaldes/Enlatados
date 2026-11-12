@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enlatados.Components.Entities;
+namespace Enlatados.Components;
 
 public abstract class Component
 {

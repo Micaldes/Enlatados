@@ -1,8 +1,6 @@
 ﻿using System.Numerics;
 using Raylib_cs;
 using Enlatados.Components;
-
-using Component = Enlatados.Components.Entities.Component;
 public class RenderComponent : Component, IRenderComponent
 {
     public Texture2D texture { get; set; }

@@ -34,13 +34,9 @@ namespace Enlatados
         {
             Init();
 
-
             lastTime = Raylib.GetTime();
             while (!Raylib.WindowShouldClose())
             {
-
-
-
                 currentTime = Raylib.GetTime();
                 deltaTime = currentTime - lastTime; //Tiempo transcurrido entre dos frames consecutivos o dicho de otro modo tiempo que tarda en procesarse el frame anterior
                 lastTime = currentTime;
@@ -55,10 +51,8 @@ namespace Enlatados
 
                     lag -= deltaFijo;
                 }
-               
-
+              
                 Render(); //Es independiente al paso del tiempo del juego.
-
             }
 
             _bg.Unload();                          // Destruye el canvas de la GPU
@@ -68,8 +62,6 @@ namespace Enlatados
 
         private void Init()
         {
-
-
             Raylib.InitWindow(
                 SCREEN_WIDTH,
                 SCREEN_HEIGTH,
