@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
+using static EventId;
+using static SoundAssets.SoundID;
 
 public class SoundLoader : IService, IGameObject, IObserver<PlayerEventData>
 {
@@ -44,9 +46,9 @@ public class SoundLoader : IService, IGameObject, IObserver<PlayerEventData>
 
     public void OnUpdate(PlayerEventData data)
     {
-        if(data.EventType == EventId.PlayerShoots)
+        if(data.EventType == PlayerShoots)
         {
-            _playSoundQueue.Enqueue(SoundAssets.SoundID.Shoot);
+            _playSoundQueue.Enqueue(Shoot);
         }
 
     }

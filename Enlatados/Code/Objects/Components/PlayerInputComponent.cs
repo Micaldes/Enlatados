@@ -3,6 +3,7 @@ using System;
 using System.Numerics;
 using Enlatados.Components;
 using Enlatados.Code.Objects.Components;
+using static EventId;
 
 public class PlayerInputComponent : Component, IInputComponent
 {
@@ -18,7 +19,7 @@ public class PlayerInputComponent : Component, IInputComponent
         if (Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
             mouseLeftPressed = true;
-            Owner.Parent.SendPlayerEvent(EventId.PlayerShoots);
+            Owner.Parent.SendPlayerEvent(PlayerShoots);
         }
     }
 }
