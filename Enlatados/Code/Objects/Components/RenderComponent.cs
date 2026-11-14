@@ -5,19 +5,22 @@ using Enlatados.Code.Objects.Components;
 public class RenderComponent : Component, IRenderComponent
 {
     public Texture2D texture { get; set; }
-    public RenderComponent(Texture2D texture, GameObject owner) : base(owner) { 
+    public float Scale { get; set; }
+    public RenderComponent(Texture2D texture, GameObject owner, float scale = 1.0f) : base(owner) { 
 
         this.texture = texture;
-
+        this.Scale = scale;
     }
 
     public void Render()
     {
-        Raylib.DrawTextureV(
-            texture,
-            Owner.MovementComponent.position,
-            Color.White
-        );
+        Raylib.DrawTextureEx(
+             texture,
+             Owner.MovementComponent.position,
+             0f, // Rotación en grados
+             Scale,
+             Color.White
+         );
 
     }
 }

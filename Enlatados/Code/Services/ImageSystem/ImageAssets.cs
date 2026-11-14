@@ -10,12 +10,15 @@ public class ImageAssets
     public enum ImageID
     {
         Background,
-        Cursor
+        Cursor,
+
+        LataMonster
     }
 
     public static readonly Dictionary<ImageID, string> ImageFiles = new Dictionary<ImageID, string>()
     {
         [ImageID.Background] = "Background.png",
-        [ImageID.Cursor] = "Cursor.png"
+        [ImageID.Cursor] = "Cursor.png",
+        [ImageID.LataMonster] = "LataMonster.png"
     };
 }

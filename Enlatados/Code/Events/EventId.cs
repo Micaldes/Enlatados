@@ -6,5 +6,7 @@ using System.Threading.Tasks;
 
 public enum EventId
 {
-    PlayerShoots
+    PlayerShoots,
+
+    LataDestroyed
 }

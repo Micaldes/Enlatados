@@ -14,7 +14,7 @@ public class PlayerMovementComponent : Component, IMovementComponent
     
     public void  Move(float deltaTime)
     { //Aqui no usare delta, ya que el cursor depende unicamente del raton
-        position = Owner.InputComponent.mousePos;
+        position = Owner.InputComponent.mousePos; //Como es qué va??
     }
 
 }

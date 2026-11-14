@@ -20,6 +20,7 @@ public class PlayerInputComponent : Component, IInputComponent
         {
             mouseLeftPressed = true;
             Owner.Parent.SendPlayerEvent(PlayerShoots);
+            
         }
     }
 }
