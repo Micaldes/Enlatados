@@ -1,8 +1,8 @@
-﻿using Enlatados.Core.Code.Objects;
+﻿using Enlatados.Scenes.Core.Code.Objects;
 using Raylib_cs;
 using System.Collections.Generic;
 
-namespace Enlatados.Core.Code.ObjectPool
+namespace Enlatados.Scenes.Core.Code.ObjectPool
 {
     public class LataPool : IPool<Lata>
     {

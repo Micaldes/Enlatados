@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enlatados.Core.Code.HUD
+namespace Enlatados.Scenes.Core.Code.HUD
 {
     public interface IHud
     {

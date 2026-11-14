@@ -2,8 +2,8 @@
 using System;
 using System.Numerics;
 using static EventId;
-using Enlatados.Core.Code.Objects;
-using Enlatados.Core.Code.Objects.Components;
+using Enlatados.Scenes.Core.Code.Objects;
+using Enlatados.Scenes.Core.Code.Objects.Components;
 
 public class PlayerInputComponent : Component, IInputComponent
 {

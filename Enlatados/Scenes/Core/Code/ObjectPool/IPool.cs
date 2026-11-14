@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enlatados.Core.Code.ObjectPool
+namespace Enlatados.Scenes.Core.Code.ObjectPool
 {
     public interface IPool<T>
     {

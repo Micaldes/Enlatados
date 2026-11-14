@@ -3,7 +3,7 @@ using System;
 using System.Numerics;
 
 
-namespace Enlatados.Core.Code.Objects;
+namespace Enlatados.Scenes.Core.Code.Objects;
 
 public class GameObject : IGameObject
 {

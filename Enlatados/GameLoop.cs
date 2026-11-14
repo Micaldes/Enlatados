@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 using static ImageAssets.ImageID;
-using Enlatados.Core.Code.HUD;
-using Enlatados.Core.Code.ObjectPool;
-using Enlatados.Core.Code.Objects;
+using Enlatados.Scenes.Core.Code.HUD;
+using Enlatados.Scenes.Core.Code.ObjectPool;
+using Enlatados.Scenes.Core.Code.Objects;
 
 namespace Enlatados
 
