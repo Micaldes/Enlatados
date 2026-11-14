@@ -8,13 +8,13 @@ namespace Enlatados.Scenes.Core.Code.ObjectPool
     {
         public List<Lata> coleccion { get; set; }
 
-        public LataPool(int tamaño, Texture2D texture, float speed, GameLoop parent)
+        public LataPool(int tamaño, Texture2D texture, float speed)
         {
             coleccion = new List<Lata>();
 
             for (int i = 0; i < tamaño; i++)
             {
-                coleccion.Add(new Lata(texture, speed, parent));
+                coleccion.Add(new Lata(texture, speed));
             }
         }
 

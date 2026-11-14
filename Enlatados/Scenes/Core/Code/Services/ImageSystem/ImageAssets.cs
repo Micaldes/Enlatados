@@ -12,6 +12,7 @@ public class ImageAssets
         Background,
         Cursor,
 
+        MenuEnlatados,
         LataMonster
     }
 
@@ -19,6 +20,7 @@ public class ImageAssets
     {
         [ImageID.Background] = "Background.png",
         [ImageID.Cursor] = "Cursor.png",
-        [ImageID.LataMonster] = "LataMonster.png"
+        [ImageID.LataMonster] = "LataMonster.png",
+        [ImageID.MenuEnlatados] = "MenuEnlatados.png"
     };
 }

@@ -16,6 +16,8 @@
             return instance;
         }
         //---------------------------------------
+        public IState GetEstado() => estado;
+
         public void changeState(States StateID)
         {
 
@@ -41,10 +43,10 @@
                 case States.State_Credits: // Ajusta el nombre según tu enum
                     estado = new Enlatados.Scenes.Credits.Credits();
                     break;
+
             }
 
-            // 3. Si tienes método de inicialización (ej. Enter o Init), se llama aquí:
-            // estado.Enter();
+            estado.Enter();
         }
     }
 }

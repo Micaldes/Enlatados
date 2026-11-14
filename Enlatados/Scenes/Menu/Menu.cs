@@ -2,28 +2,35 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Numerics; // Necesario para Vector2
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 using static ImageAssets.ImageID;
 
-
-
 namespace Enlatados.Scenes.Menu
-
 {
     public class Menu : IState
     {
-
         public States StateID { get; } = States.State_Menu; //Ya no te hace falta
         public StateManager StateManagement { get; set; } = StateManager.getInstance();
 
-       
+        // Faltaba el tipo (int) y completar el nombre de los métodos de Raylib
+        private int SCREEN_WIDTH = Raylib.GetScreenWidth();
+        private int SCREEN_HEIGHT = Raylib.GetScreenHeight();
+
+        private StaticObject _bg;
 
         // AREAS BOTONES (Ajusta los números según tu resolución)
-        private Rectangle Jugar = new Rectangle(540, 300, 200, 50);
-        private Rectangle Ajustes = new Rectangle(540, 370, 200, 50);
-        private Rectangle Creditos = new Rectangle(540, 440, 200, 50);
+        private Rectangle Jugar = new Rectangle(860, 340, 200, 50);
+        private Rectangle Ajustes = new Rectangle(860, 410, 200, 50);
+        private Rectangle Creditos = new Rectangle(860, 480, 200, 50);
+
+        // Las instrucciones de inicialización van dentro de un constructor o en Enter(), no sueltas en la clase
+        public Menu()
+        {
+            _bg = new StaticObject(new Vector2(0, 0), ServiceLocator.GetService<ImageLoader>().GetTexture(MenuEnlatados), SCREEN_WIDTH, SCREEN_HEIGHT);
+        }
 
         public void Enter() //Es un preload
         {
@@ -32,7 +39,8 @@ namespace Enlatados.Scenes.Menu
 
         public void HandleInput()
         {
-            if (Raylib.IsMouseButtonPressed(MouseButton.Right))
+            // Cambiado a MouseButton.Left (si querías clic derecho déjalo en Right)
+            if (Raylib.IsMouseButtonPressed(MouseButton.Left))
             {
                 var mousePos = Raylib.GetMousePosition();
 
@@ -57,11 +65,15 @@ namespace Enlatados.Scenes.Menu
         //  //Logica Continua de ese estado
         public void Update()
         {
+            //Aqui hacer que los botones se oscurezcan al pasar el raton por encima del boton pero sin pulsar
         }
 
         //Mostrar cambios por pantalla
         public void Render()
         {
+            // ((Dibujar Fondo))
+            _bg.Render();
+
             Raylib.DrawRectangleRec(Jugar, Color.DarkGray);
             Raylib.DrawText("JUGAR", (int)Jugar.X + 60, (int)Jugar.Y + 15, 20, Color.White);
 
@@ -72,10 +84,10 @@ namespace Enlatados.Scenes.Menu
             Raylib.DrawText("CREDITOS", (int)Creditos.X + 40, (int)Creditos.Y + 15, 20, Color.White);
         }
 
-
         public void Exit()
         {
             //Limpieza
+            _bg.Unload();
         }
     }
 }

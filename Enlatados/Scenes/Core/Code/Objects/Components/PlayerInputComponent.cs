@@ -19,7 +19,8 @@ public class PlayerInputComponent : Component, IInputComponent
         if (Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
             mouseLeftPressed = true;
-            Owner.Parent.SendPlayerEvent(PlayerShoots);
+            if(Owner is Player _player)
+           _player.NotifyObservers(PlayerShoots);
             
         }
     }

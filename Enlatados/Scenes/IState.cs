@@ -16,6 +16,7 @@ namespace Enlatados.Scenes
         public void Update(); //Logica Continua de ese estado
         public void Render();
 
+        public void Enter();
         public void Exit();
     }
 }

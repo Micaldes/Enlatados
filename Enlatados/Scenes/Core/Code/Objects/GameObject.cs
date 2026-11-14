@@ -7,15 +7,15 @@ namespace Enlatados.Scenes.Core.Code.Objects;
 
 public class GameObject : IGameObject
 {
-    public GameLoop Parent { get; private set; }
+   // public GameLoop Parent { get; private set; }
 
     public IInputComponent? InputComponent { get; set; }
     public IMovementComponent? MovementComponent { get; set; }
     public IRenderComponent? RenderComponent { get; set; }
 
-    public GameObject(GameLoop parent)
+    public GameObject()
     {
-        this.Parent = parent;
+       
     }
 
     public void Initialize()

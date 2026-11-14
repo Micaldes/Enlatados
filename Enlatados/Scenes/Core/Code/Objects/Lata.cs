@@ -20,7 +20,7 @@ namespace Enlatados.Scenes.Core.Code.Objects
         private float escala = 0.25f; // Escala visual
 
         private float speed { get; set; } // Para la lata 
-        public Lata(Texture2D texture, float speed, GameLoop parent) : base(parent)
+        public Lata(Texture2D texture, float speed)
         {
             this.speed = speed;
 
