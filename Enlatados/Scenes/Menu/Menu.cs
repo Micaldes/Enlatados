@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,13 @@ namespace Enlatados.Scenes.Menu
         public States StateID { get; } = States.State_Menu;
         public StateManager StateManagement { get; set; } = StateManager.getInstance();
 
+        //Para acceder a las otras clases
+        //public static Game Juego;
+        //public static Credits Creditos;
+        //public static Settings Ajustes;
+
+
+
 
         // AREAS BOTONES (Ajusta los números según tu resolución)
         private Rectangle Jugar = new Rectangle(540, 300, 200, 50);
@@ -25,47 +33,49 @@ namespace Enlatados.Scenes.Menu
 
         public void Enter() //Es un preload
         {
-           //Inicialización de variables si hace falta
+            //Inicialización de variables si hace falta
         }
-        
+
         public void HandleInput()
         {
-            if (Raylib.IsMouseButtonPressed(MouseButton.Right)){
-                if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), Jugar))
+            if (Raylib.IsMouseButtonPressed(MouseButton.Right))
+            {
+                var mousePos = Raylib.GetMousePosition();
+
+                if (Raylib.CheckCollisionPointRec(mousePos, Jugar))
                 {
                     // Aquí llamas a tu gestor de estados para cambiar al juego
                     StateManagement.changeState(States.State_Core);
                 }
-            }
-
-            if (Raylib.IsMouseButtonPressed(MouseButton.Right))
-            {
-                if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), Ajustes))
+                else if (Raylib.CheckCollisionPointRec(mousePos, Ajustes))
                 {
-                    // Aquí llamas a tu gestor de estados para cambiar al juego
+                    // Aquí llamas a tu gestor de estados para cambiar a ajustes
                     StateManagement.changeState(States.State_Settings);
                 }
-            }
-
-            if (Raylib.IsMouseButtonPressed(MouseButton.Right))
-            {
-                if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), Creditos))
+                else if (Raylib.CheckCollisionPointRec(mousePos, Creditos))
                 {
-                    // Aquí llamas a tu gestor de estados para cambiar al juego
+                    // Aquí llamas a tu gestor de estados para cambiar a créditos
                     StateManagement.changeState(States.State_Credits);
                 }
             }
-
         }
+
         //  //Logica Continua de ese estado
         public void Update()
         {
         }
-          
+
         //Mostrar cambios por pantalla
         public void Render()
         {
+            Raylib.DrawRectangleRec(Jugar, Color.DarkGray);
+            Raylib.DrawText("JUGAR", (int)Jugar.X + 60, (int)Jugar.Y + 15, 20, Color.White);
 
+            Raylib.DrawRectangleRec(Ajustes, Color.DarkGray);
+            Raylib.DrawText("AJUSTES", (int)Ajustes.X + 45, (int)Ajustes.Y + 15, 20, Color.White);
+
+            Raylib.DrawRectangleRec(Creditos, Color.DarkGray);
+            Raylib.DrawText("CREDITOS", (int)Creditos.X + 40, (int)Creditos.Y + 15, 20, Color.White);
         }
 
     }
