@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
-using Enlatados.Code.Objects.Components;
-using Enlatados.Components;
+using Enlatados.Core.Code.Objects;
+using Enlatados.Core.Code.Objects.Components;
 
 public class PlayerMovementComponent : Component, IMovementComponent
 {

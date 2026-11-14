@@ -5,10 +5,10 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
-using Enlatados.Components;
 using static ImageAssets.ImageID;
-using Enlatados.Code.HUD;
-using Enlatados.Code.ObjectPool;
+using Enlatados.Core.Code.HUD;
+using Enlatados.Core.Code.ObjectPool;
+using Enlatados.Core.Code.Objects;
 
 namespace Enlatados
 

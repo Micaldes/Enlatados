@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
-namespace Enlatados.Code.HUD
+namespace Enlatados.Core.Code.HUD
 {
     public  class Cronometro : IHud, IObserver<EventId>
     {

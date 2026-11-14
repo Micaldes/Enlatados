@@ -1,5 +1,5 @@
-﻿using Enlatados.Code.Objects.Components;
-using Enlatados.Components;
+﻿using Enlatados.Core.Code.Objects;
+using Enlatados.Core.Code.Objects.Components;
 using System;
 using System.Numerics;
 public class LataMovementComponent : Component, IMovementComponent

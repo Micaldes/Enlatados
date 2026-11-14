@@ -1,9 +1,8 @@
 ﻿using Raylib_cs;
 using System;
 using System.Numerics;
-using Enlatados.Components;
 
-namespace Enlatados.Components;
+namespace Enlatados.Core.Code.Objects;
 
 public class Player : GameObject, ISubject<EventId>
 {

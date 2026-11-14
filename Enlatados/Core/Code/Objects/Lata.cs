@@ -7,7 +7,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enlatados.Components
+namespace Enlatados.Core.Code.Objects
 {
     public class Lata : GameObject , ISubject<EventId>, IObserver<EventId>
     {
