@@ -17,10 +17,10 @@ namespace Enlatados.Scenes.Credits
         private StaticObject _bg;
 
         private string _titulo = "CREDITOS";
-        private string _nombre1 = "Nombre 1";
-        private string _nombre2 = "Nombre 2";
-        private string _nombre3 = "Nombre 3";
-        private string _nombre4 = "Nombre 4";
+        private string _nombre1 = "Javier Arcas Calvo";
+        private string _nombre2 = "Yoel Rodríguez Quiroga";
+        private string _nombre3 = "Miguel Caldés García";
+        private string _nombre4 = "Felipe Owen Zhu Zhang";
         private string _volver = "VOLVER";
 
         private int _tamTitulo = 60;
