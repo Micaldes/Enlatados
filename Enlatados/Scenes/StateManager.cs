@@ -1,33 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Enlatados.Scenes
+﻿namespace Enlatados.Scenes
 {
-    public class StateManager //Singleton
+    public class StateManager // Singleton
     {
-        public static StateManager instance;
+        private IState estado;
+        private static StateManager instance;
 
-        private StateManager()  { } //Privatizamos el constructor
-
+        private StateManager() { }
 
         public static StateManager getInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new StateManager();
             }
             return instance;
         }
-
-
+        //---------------------------------------
         public void changeState(States StateID)
         {
 
-        }
+            //Cuando abandonamos un estado, lo limpiamos y no antes de entrar a otro, mejor asi
+            //  Si ya hay un estado activo, lo limpiamos antes de cambiar
+            if (estado != null)
+            {
+                estado.Exit();
+            }
 
-       
+            //  Asignamos la nueva instancia según el enum
+            switch (StateID)
+            {
+                case States.State_Menu:
+                    estado = new Enlatados.Scenes.Menu.Menu();
+                    break;
+                case States.State_Core: // Ajusta el nombre según tu enum
+                    estado = new Enlatados.Scenes.Core.Code.Game();
+                    break;
+                case States.State_Settings:
+                    estado = new Enlatados.Scenes.Settings.Settings();
+                    break;
+                case States.State_Credits: // Ajusta el nombre según tu enum
+                    estado = new Enlatados.Scenes.Credits.Credits();
+                    break;
+            }
+
+            // 3. Si tienes método de inicialización (ej. Enter o Init), se llama aquí:
+            // estado.Enter();
+        }
     }
 }

@@ -15,16 +15,10 @@ namespace Enlatados.Scenes.Menu
     public class Menu : IState
     {
 
-        public States StateID { get; } = States.State_Menu;
+        public States StateID { get; } = States.State_Menu; //Ya no te hace falta
         public StateManager StateManagement { get; set; } = StateManager.getInstance();
 
-        //Para acceder a las otras clases
-        //public static Game Juego;
-        //public static Credits Creditos;
-        //public static Settings Ajustes;
-
-
-
+       
 
         // AREAS BOTONES (Ajusta los números según tu resolución)
         private Rectangle Jugar = new Rectangle(540, 300, 200, 50);
@@ -78,5 +72,10 @@ namespace Enlatados.Scenes.Menu
             Raylib.DrawText("CREDITOS", (int)Creditos.X + 40, (int)Creditos.Y + 15, 20, Color.White);
         }
 
+
+        public void Exit()
+        {
+            //Limpieza
+        }
     }
 }

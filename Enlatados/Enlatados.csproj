@@ -27,9 +27,4 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Scenes\Credits\" />
-	  <Folder Include="Scenes\Settings\" />
-	</ItemGroup>
 </Project>
