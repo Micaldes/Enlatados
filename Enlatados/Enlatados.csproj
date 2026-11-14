@@ -29,7 +29,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Scenes\Menu\" />
 	  <Folder Include="Scenes\Credits\" />
 	  <Folder Include="Scenes\Settings\" />
 	</ItemGroup>
