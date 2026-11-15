@@ -37,6 +37,10 @@ namespace Enlatados.Scenes.Core.Code
             // Corta la música del menú al entrar a jugar
             controladorServicios.GetService<SoundLoader>().StopMusic(SoundAssets.SoundID.MenuMusic);
 
+            //Inicio la musica de juego
+            controladorServicios.GetService<SoundLoader>().PlayMusic(SoundAssets.SoundID.GameMusic);
+
+
             // Inicialización de entidades y escenario
             _player = new Player(new Vector2(0, 0), controladorServicios.GetService<ImageLoader>().GetTexture(Cursor));
             _bg = new StaticObject(new Vector2(0, 0), controladorServicios.GetService<ImageLoader>().GetTexture(Background), SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -115,7 +119,8 @@ namespace Enlatados.Scenes.Core.Code
         {
             // Restauramos el cursor para los menús y desvinculamos observadores
             Raylib.ShowCursor();
-           
+            //Inicio la musica de juego
+            controladorServicios.GetService<SoundLoader>().StopMusic(SoundAssets.SoundID.GameMusic);
             _bg.Unload();
         }
 
