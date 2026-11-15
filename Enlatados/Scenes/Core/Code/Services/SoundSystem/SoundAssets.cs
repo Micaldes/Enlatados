@@ -9,11 +9,14 @@ public static class SoundAssets
 {
     public enum SoundID
     {
-        Shoot
+        Shoot,
+        MenuMusic
     }
 
     public static readonly Dictionary<SoundID, string[]> SoundFiles = new Dictionary<SoundID, string[]>()
     {
-        [SoundID.Shoot] = ["Shoot.mp3"]
+        [SoundID.Shoot] = ["Shoot.mp3"],
+        [SoundID.MenuMusic] = ["Cantina_song.mp3"]
+
     };
 }

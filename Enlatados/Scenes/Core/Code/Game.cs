@@ -33,7 +33,9 @@ namespace Enlatados.Scenes.Core.Code
         {
             // Registramos el sistema de sonido como observador de los eventos del jugador
             SoundLoader soundSystem = controladorServicios.GetService<SoundLoader>();
-         
+
+            // Corta la música del menú al entrar a jugar
+            controladorServicios.GetService<SoundLoader>().StopMusic(SoundAssets.SoundID.MenuMusic);
 
             // Inicialización de entidades y escenario
             _player = new Player(new Vector2(0, 0), controladorServicios.GetService<ImageLoader>().GetTexture(Cursor));

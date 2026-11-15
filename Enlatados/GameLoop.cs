@@ -66,8 +66,8 @@ namespace Enlatados
                 "Enlatados");
 
             Raylib.SetTargetFPS(FPS);
-            // Raylib.ToggleFullscreen();
-            Raylib.SetWindowPosition(100, 100);
+            Raylib.ToggleFullscreen();
+            //Raylib.SetWindowPosition(100, 100);
             // Servicios globales (se mantienen vivos durante todo el juego)
             SoundLoader _soundSystem = new SoundLoader();
             _soundSystem.Initialize();
@@ -95,6 +95,8 @@ namespace Enlatados
         {
             // Si en tu IState.Update() no recibes parámetros, quita (float)deltaFijo
             _stateManager.GetEstado()?.Update();
+            // Mantiene el flujo de audio de la música de fondo actualizado en cada fotograma
+            controladorServicios.GetService<SoundLoader>().Update((float)deltaFijo);
         }
 
         private void Render()

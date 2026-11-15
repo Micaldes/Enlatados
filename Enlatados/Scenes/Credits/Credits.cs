@@ -55,6 +55,8 @@ namespace Enlatados.Scenes.Credits
 
         public void Enter()
         {
+            // Arranca la música si estaba parada, o la deja seguir si vienes de otra pantalla de menú
+            controladorServicios.GetService<SoundLoader>().PlayMusic(SoundAssets.SoundID.MenuMusic);
         }
 
         public void HandleInput()
