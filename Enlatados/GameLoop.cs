@@ -15,6 +15,7 @@ namespace Enlatados
         private const int SCREEN_HEIGTH = 1080;
 
         private StateManager _stateManager; //Instancia unica y globalmente accesible
+        ServiceLocator controladorServicios = ServiceLocator.getInstance(); //Instancia unica y globalmente accesible
 
         // Gestión de tiempos
         double currentTime;
@@ -48,9 +49,11 @@ namespace Enlatados
             // Limpiamos el estado activo antes de liberar los servicios globales
             _stateManager.GetEstado()?.Exit();
 
-            ServiceLocator.GetService<ImageLoader>().Destroy();
-            ServiceLocator.GetService<SoundLoader>().Destroy();
-            ServiceLocator.Clear();
+            
+
+            controladorServicios.GetService<ImageLoader>().Destroy();
+            controladorServicios.GetService<SoundLoader>().Destroy();
+            controladorServicios.Clear();
 
             Raylib.CloseWindow();
         }
@@ -68,11 +71,11 @@ namespace Enlatados
             // Servicios globales (se mantienen vivos durante todo el juego)
             SoundLoader _soundSystem = new SoundLoader();
             _soundSystem.Initialize();
-            ServiceLocator.RegisterService<SoundLoader>(_soundSystem);
+            controladorServicios.RegisterService<SoundLoader>(_soundSystem);
 
             ImageLoader _imageSystem = new ImageLoader();
             _imageSystem.Initialize();
-            ServiceLocator.RegisterService<ImageLoader>(_imageSystem);
+            controladorServicios.RegisterService<ImageLoader>(_imageSystem);
 
             // Inicializamos la máquina de estados y arrancamos en el Menú
             _stateManager = StateManager.getInstance();
@@ -103,7 +106,7 @@ namespace Enlatados
             _stateManager.GetEstado()?.Render();
 
             // Los sonidos activos del SoundLoader pueden seguir actualizándose globalmente si lo necesitas
-            ServiceLocator.GetService<SoundLoader>().Render();
+            controladorServicios.GetService<SoundLoader>().Render();
 
             RenderFpsCounter();
 

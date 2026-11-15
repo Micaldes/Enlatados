@@ -7,7 +7,7 @@ using Raylib_cs;
 using static EventId;
 using static SoundAssets.SoundID;
 
-public class SoundLoader : IService, IGameObject, IObserver<PlayerEventData>
+public class SoundLoader : IService, IGameObject, IObserver<EventId>
 {
     //Diccionario que asocia las ids con su Sound
     private Dictionary<SoundAssets.SoundID, Sound> _sounds = new Dictionary<SoundAssets.SoundID, Sound>();
@@ -44,9 +44,9 @@ public class SoundLoader : IService, IGameObject, IObserver<PlayerEventData>
         }
     }
 
-    public void OnUpdate(PlayerEventData data)
+    public void OnUpdate(EventId data)
     {
-        if(data.EventType == PlayerShoots)
+        if(data == PlayerShoots)
         {
             _playSoundQueue.Enqueue(Shoot);
         }

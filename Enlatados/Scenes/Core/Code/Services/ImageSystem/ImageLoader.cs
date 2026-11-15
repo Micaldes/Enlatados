@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class ImageLoader : IService, IGameObject
+public class ImageLoader : IService //, IGameObject
 {
     private Dictionary<ImageAssets.ImageID, Image> _images = new Dictionary<ImageAssets.ImageID, Image>();
 
@@ -34,26 +34,26 @@ public class ImageLoader : IService, IGameObject
         }
     }
 
-    public void Input()
-    {
+    //public void Input()
+    //{
     
-    }
-    public void Update(float deltaTime)
-    {
+    //}
+    //public void Update(float deltaTime)
+    //{
         
-    }
-    public void Render()
-    {
+    //}
+    //public void Render()
+    //{
 
-    }
+    //}
     public void Destroy()
     {
         foreach (var Image in _images.Values)
         {
-            Image.Unload();
+            Image.Unload();  
         }
 
-        _images.Clear();
+        _images.Clear(); //Vacias el diccionario entero, no sin antes vaciar de memoria las imagenes
     }
 }
 

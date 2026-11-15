@@ -10,7 +10,7 @@ namespace Enlatados.Scenes.Credits
     {
         public States StateID { get; } = States.State_Credits;
         public StateManager StateManagement { get; set; } = StateManager.getInstance();
-
+        ServiceLocator controladorServicios = ServiceLocator.getInstance(); //Instancia unica y globalmente accesible
         private int SCREEN_WIDTH = Raylib.GetScreenWidth();
         private int SCREEN_HEIGHT = Raylib.GetScreenHeight();
 
@@ -40,7 +40,7 @@ namespace Enlatados.Scenes.Credits
 
             _bg = new StaticObject(
                 new Vector2(0, 0),
-                ServiceLocator.GetService<ImageLoader>().GetTexture(MenuEnlatados),
+                controladorServicios.GetService<ImageLoader>().GetTexture(MenuEnlatados),
                 SCREEN_WIDTH,
                 SCREEN_HEIGHT
             );

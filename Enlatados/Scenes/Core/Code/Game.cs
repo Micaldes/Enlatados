@@ -14,7 +14,7 @@ namespace Enlatados.Scenes.Core.Code
     {
         public States StateID { get; } = States.State_Core;
         public StateManager StateManagement { get; set; } = StateManager.getInstance();
-
+        ServiceLocator controladorServicios = ServiceLocator.getInstance(); //Instancia unica y globalmente accesible
         private const float deltaFijo = 1f / 60f;
         private int SCREEN_WIDTH = Raylib.GetScreenWidth();
         private int SCREEN_HEIGHT = Raylib.GetScreenHeight();
@@ -32,15 +32,15 @@ namespace Enlatados.Scenes.Core.Code
         public void Enter()
         {
             // Registramos el sistema de sonido como observador de los eventos del jugador
-            SoundLoader soundSystem = ServiceLocator.GetService<SoundLoader>();
+            SoundLoader soundSystem = controladorServicios.GetService<SoundLoader>();
          
 
             // Inicialización de entidades y escenario
-            _player = new Player(new Vector2(0, 0), ServiceLocator.GetService<ImageLoader>().GetTexture(Cursor));
-            _bg = new StaticObject(new Vector2(0, 0), ServiceLocator.GetService<ImageLoader>().GetTexture(Background), SCREEN_WIDTH, SCREEN_HEIGHT);
+            _player = new Player(new Vector2(0, 0), controladorServicios.GetService<ImageLoader>().GetTexture(Cursor));
+            _bg = new StaticObject(new Vector2(0, 0), controladorServicios.GetService<ImageLoader>().GetTexture(Background), SCREEN_WIDTH, SCREEN_HEIGHT);
             _reloj = new Cronometro();
 
-            Texture2D texturaLata = ServiceLocator.GetService<ImageLoader>().GetTexture(LataMonster);
+            Texture2D texturaLata = controladorServicios.GetService<ImageLoader>().GetTexture(LataMonster);
             _latas = new LataPool(10, texturaLata, 250f);
 
             // Ocultamos el cursor del sistema para mostrar solo la mira
@@ -52,6 +52,8 @@ namespace Enlatados.Scenes.Core.Code
                 _player.AddObserver(_latas.coleccion[i]);
                 _latas.coleccion[i].AddObserver(_reloj);
             }
+
+            _player.AddObserver(soundSystem);
         }
 
         public void HandleInput()
@@ -116,11 +118,5 @@ namespace Enlatados.Scenes.Core.Code
         }
 
         
-
-        //public void SendPlayerEvent(EventId eventType)
-        //{
-        //    NotifyObservers(new PlayerEventData(eventType));
-        //    _player.NotifyObservers(eventType);
-        //}
     }
 }

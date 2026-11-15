@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public  class ServiceLocator
+public class ServiceLocator
 {
     private static readonly Dictionary<Type, IService> _services = new Dictionary<Type, IService>();
     //----------------------------------------
     //Singleton
     public static ServiceLocator instance;
-    //private ServiceLocator() { }
+    private ServiceLocator() { }
 
     public static ServiceLocator getInstance()
     {
@@ -25,7 +25,7 @@ public  class ServiceLocator
     //----------------------------------------
 
 
-    public static void RegisterService<T>(T service) where T : IService
+    public  void RegisterService<T>(T service) where T : IService
     {
         Type serviceType = typeof(T);
         if (!_services.ContainsKey(serviceType))
@@ -34,7 +34,7 @@ public  class ServiceLocator
         }
     }
 
-    public static T GetService<T>() where T : IService
+    public  T GetService<T>() where T : IService
     {
         Type serviceType = typeof(T);
         if (_services.ContainsKey(serviceType))
@@ -45,7 +45,7 @@ public  class ServiceLocator
         throw new Exception("No existe el servicio solicitado en el registro de ServiceLocator.");
     }
 
-    public static void Clear()
+    public  void Clear()
     {
         _services.Clear();
     }

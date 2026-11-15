@@ -14,7 +14,7 @@ namespace Enlatados.Scenes.Menu
     {
         public States StateID { get; } = States.State_Menu; //Ya no te hace falta
         public StateManager StateManagement { get; set; } = StateManager.getInstance();
-
+        ServiceLocator controladorServicios = ServiceLocator.getInstance(); //Instancia unica y globalmente accesible
         // Faltaba el tipo (int) y completar el nombre de los métodos de Raylib
         private int SCREEN_WIDTH = Raylib.GetScreenWidth();
         private int SCREEN_HEIGHT = Raylib.GetScreenHeight();
@@ -29,7 +29,7 @@ namespace Enlatados.Scenes.Menu
         // Las instrucciones de inicialización van dentro de un constructor o en Enter(), no sueltas en la clase
         public Menu()
         {
-            _bg = new StaticObject(new Vector2(0, 0), ServiceLocator.GetService<ImageLoader>().GetTexture(MenuEnlatados), SCREEN_WIDTH, SCREEN_HEIGHT);
+            _bg = new StaticObject(new Vector2(0, 0), controladorServicios.GetService<ImageLoader>().GetTexture(MenuEnlatados), SCREEN_WIDTH, SCREEN_HEIGHT);
         }
 
         public void Enter() //Es un preload
