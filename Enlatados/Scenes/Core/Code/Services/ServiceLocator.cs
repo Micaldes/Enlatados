@@ -5,16 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public static class ServiceLocator
+public  class ServiceLocator
 {
     private static readonly Dictionary<Type, IService> _services = new Dictionary<Type, IService>();
+    //----------------------------------------
+    //Singleton
+    public static ServiceLocator instance;
+    //private ServiceLocator() { }
+
+    public static ServiceLocator getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new ServiceLocator();
+        }
+
+        return instance;
+    }
+    //----------------------------------------
+
 
     public static void RegisterService<T>(T service) where T : IService
     {
         Type serviceType = typeof(T);
         if (!_services.ContainsKey(serviceType))
         {
-            _services[serviceType] = service;
+            _services[serviceType] = service; //Añades pares clave valor, Asi evitamos dos servicios de un mismo tipo
         }
     }
 
@@ -23,7 +39,7 @@ public static class ServiceLocator
         Type serviceType = typeof(T);
         if (_services.ContainsKey(serviceType))
         {
-            return (T)_services[serviceType];
+            return (T)_services[serviceType];  //Casting a T, T es un servicio concreto e IService es generico
         }
 
         throw new Exception("No existe el servicio solicitado en el registro de ServiceLocator.");

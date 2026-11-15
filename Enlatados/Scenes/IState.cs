@@ -8,7 +8,7 @@ namespace Enlatados.Scenes
 {
     public interface IState
     {
-        public States StateID { get; } //Identificador del estado actual
+        public States StateID { get; } //Identificador del estado actual, si se quitase no pasaria nada
 
         public StateManager StateManagement { get; set; }
 

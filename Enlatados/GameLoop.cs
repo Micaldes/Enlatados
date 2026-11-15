@@ -63,7 +63,7 @@ namespace Enlatados
                 "Enlatados");
 
             Raylib.SetTargetFPS(FPS);
-            //Raylib.ToggleFullscreen();
+            // Raylib.ToggleFullscreen();
             Raylib.SetWindowPosition(100, 100);
             // Servicios globales (se mantienen vivos durante todo el juego)
             SoundLoader _soundSystem = new SoundLoader();
