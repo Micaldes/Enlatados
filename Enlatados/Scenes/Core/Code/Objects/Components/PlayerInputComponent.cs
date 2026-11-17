@@ -4,13 +4,23 @@ using System.Numerics;
 using static EventId;
 using Enlatados.Scenes.Core.Code.Objects;
 using Enlatados.Scenes.Core.Code.Objects.Components;
+//using System.Windows.Input;
+using Enlatados.Scenes.Core.Code.Interfaces;
+using Enlatados.Scenes.Core.Code.Command;
 
 public class PlayerInputComponent : Component, IInputComponent
 {
     public Vector2 mousePos { get; set; }
 
+    private ICommand objetoComando;
+
     public bool mouseLeftPressed { get; set; }
-    public PlayerInputComponent(GameObject owner) : base(owner){}
+    public PlayerInputComponent(GameObject owner) : base(owner){
+        if(Owner is Player p)
+        {
+            objetoComando = p.getCommand();
+        }
+    }
 
     public void Input()
     {
@@ -20,8 +30,13 @@ public class PlayerInputComponent : Component, IInputComponent
         {
             mouseLeftPressed = true;
             if(Owner is Player _player)
-           _player.NotifyObservers(PlayerShoots);
-            
+            {
+                // _player.NotifyObservers(PlayerShoots); //Vamos a encapsular la accion en una clase comando
+               
+                objetoComando.execute();
+            }
+
+
         }
     }
 }
