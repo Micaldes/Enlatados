@@ -24,6 +24,7 @@ public class SoundLoader : IService, IGameObject, IObserver<EventId>
         foreach (KeyValuePair<SoundAssets.SoundID, string[]> sound in SoundAssets.SoundFiles)
         {
             bool isMusic = sound.Key == MenuMusic; // Comprueba si la entrada corresponde a música de fondo
+            float volume = (sound.Key == ExplosionSound) ? 10f : 0.5f;
             _sounds[sound.Key] = new Sound(sound.Value, isMusic);
         }
     }
@@ -43,7 +44,7 @@ public class SoundLoader : IService, IGameObject, IObserver<EventId>
 
     public void Render()
     {
-        if (_playSoundQueue.Count > 0)
+        while (_playSoundQueue.Count > 0)
         {
             _sounds[_playSoundQueue.Dequeue()].PlayStep();
         }
@@ -51,11 +52,19 @@ public class SoundLoader : IService, IGameObject, IObserver<EventId>
 
     public void OnUpdate(EventId data)
     {
+        
         if (data == PlayerShoots)
         {
             _playSoundQueue.Enqueue(Shoot);
         }
-
+        if (data == Impacts)
+        {
+            _playSoundQueue.Enqueue(Impacto);
+        }
+        if (data == LataDestroyed)
+        {
+            _playSoundQueue.Enqueue(ExplosionSound);
+        }
     }
 
     // Método auxiliar para iniciar una pista de música directamente desde los estados/escenas
@@ -77,4 +86,6 @@ public class SoundLoader : IService, IGameObject, IObserver<EventId>
     {
         Raylib.CloseAudioDevice();
     }
+
+
 }

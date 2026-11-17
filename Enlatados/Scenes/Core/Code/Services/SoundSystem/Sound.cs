@@ -14,7 +14,7 @@ public class Sound
 
     private int _currentStep = 0; //Variable que permite alternar entre los distintos archivos de sonido asociados a un mismo Sound
 
-    public Sound(string[] soundPaths, bool isMusic = false) //Recibe un array de strings con los nombres de los distintos archivos de sonido asociados a un mismo Sound
+    public Sound(string[] soundPaths, bool isMusic = false, float volume = 1.0f) //Recibe un array de strings con los nombres de los distintos archivos de sonido asociados a un mismo Sound
     {
         _isMusic = isMusic;
 
@@ -32,6 +32,7 @@ public class Sound
             for (int i = 0; i < soundPaths.Length; i++)
             {
                 _sounds[i] = Raylib.LoadSound(Path.Combine(AppContext.BaseDirectory, "Assets", "Sounds", soundPaths[i])); //Concatena el archivo con el directorio
+                Raylib.SetSoundVolume(_sounds[i], volume);
             }
         }
     }

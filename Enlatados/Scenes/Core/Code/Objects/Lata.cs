@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using Enlatados.Scenes.Core.Code.Objects.Components;
+using Raylib_cs;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
@@ -11,20 +12,29 @@ namespace Enlatados.Scenes.Core.Code.Objects
 {
     public class Lata : GameObject , ISubject<EventId>, IObserver<EventId>
     {
+        ServiceLocator controladorServicios;
+        SoundLoader soundSystem;
+
+        public LataExplosionComponent ExplosionComponent { get; set; }
 
         int anchoEscalado;
         int altoEscalado;
 
-        protected int lataVida = 3; //Propiedad
+        protected int lataVida = 5; //Propiedad
         private bool active;
-        private float escala = 0.25f; // Escala visual
+        private float escala = 0.05f; // Escala visual
 
-        private float speed { get; set; } // Para la lata 
+        private float speed { get; set; } // Para la lata
+                                          // 
+        private Texture2D texturaLata; // Para recuperarla tras la explosion
         public Lata(Texture2D texture, float speed)
         {
             this.speed = speed;
-
-            
+            texturaLata = texture; //La guardamos
+            controladorServicios = ServiceLocator.getInstance();
+            soundSystem = controladorServicios.GetService<SoundLoader>();
+            Texture2D ExplosionTexture = controladorServicios.GetService<ImageLoader>().GetTexture(ImageAssets.ImageID.Explosion); //Aqui textura explosion
+            ExplosionComponent = new LataExplosionComponent(this,ExplosionTexture);
 
             MovementComponent = new LataMovementComponent(Vector2.Zero, speed, this);
             RenderComponent = new RenderComponent(texture, this, escala);
@@ -44,7 +54,7 @@ namespace Enlatados.Scenes.Core.Code.Objects
             if (RenderComponent is RenderComponent )
             {
 
-                lataVida = 3;
+              
                 float posX = Random.Shared.Next(anchoEscalado, Raylib.GetScreenWidth() - anchoEscalado);
                 float posY = -altoEscalado; // Empieza justo por encima del borde superior
 
@@ -60,15 +70,25 @@ namespace Enlatados.Scenes.Core.Code.Objects
         public void setInactive()
         {
             active = false;
+            if(RenderComponent is RenderComponent rc)
+            {
+                rc.texture = texturaLata;
+            }
+
+            lataVida = 5; //Para las latas base
         }
 
         public void RecibirImpacto()
         {
+            NotifyObservers(EventId.Impacts);  //Asi el soundLoader ejecutará el sonido
             lataVida -= 1;
-            if(lataVida == 0)
+           
+            //LLamada a su componente de movimiento que hara el efecto de empuje de la lata
+            if (lataVida == 0)
             {
+                ExplosionComponent.Explode();
                 NotifyObservers(EventId.LataDestroyed);
-                setInactive();
+                //setInactive(); Lo hará explosion Component al terminar la explosion
             }
         }
 
@@ -96,7 +116,7 @@ namespace Enlatados.Scenes.Core.Code.Objects
         public void OnUpdate(EventId data)
         {
 
-            if (!active)
+            if (!active ||  ExplosionComponent.IsExploding)
             {
                 return; //Ni lo comprueba
             }

@@ -8,5 +8,6 @@ public enum EventId
 {
     PlayerShoots,
 
-    LataDestroyed
+    LataDestroyed,
+    Impacts
 }

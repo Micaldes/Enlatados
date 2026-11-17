@@ -7,6 +7,7 @@ namespace Enlatados.Scenes.Core.Code.ObjectPool
     public class LataPool : IPool<Lata>
     {
         public List<Lata> coleccion { get; set; }
+        SoundLoader soundSystem = ServiceLocator.getInstance().GetService<SoundLoader>();
 
         public LataPool(int tamaño, Texture2D texture, float speed)
         {
@@ -15,6 +16,7 @@ namespace Enlatados.Scenes.Core.Code.ObjectPool
             for (int i = 0; i < tamaño; i++)
             {
                 coleccion.Add(new Lata(texture, speed));
+                coleccion[i].AddObserver(soundSystem);
             }
         }
 

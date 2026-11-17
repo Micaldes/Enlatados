@@ -46,8 +46,8 @@ namespace Enlatados.Scenes.Core.Code
             _bg = new StaticObject(new Vector2(0, 0), controladorServicios.GetService<ImageLoader>().GetTexture(Background), SCREEN_WIDTH, SCREEN_HEIGHT);
             _reloj = new Cronometro();
 
-            Texture2D texturaLata = controladorServicios.GetService<ImageLoader>().GetTexture(LataMonster);
-            _latas = new LataPool(10, texturaLata, 250f);
+            Texture2D texturaLata = controladorServicios.GetService<ImageLoader>().GetTexture(LataNormal1);
+            _latas = new LataPool(13, texturaLata, 250f);
 
             // Ocultamos el cursor del sistema para mostrar solo la mira
             Raylib.HideCursor();
@@ -89,11 +89,17 @@ namespace Enlatados.Scenes.Core.Code
             {
                 if (lata.isActive())
                 {
-                    lata.Update(deltaFijo);
-
-                    if (lata.MovementComponent.position.Y > Raylib.GetScreenHeight())
+                    if (lata.ExplosionComponent.IsExploding)
                     {
-                        lata.setInactive();
+                        lata.ExplosionComponent.Update(deltaFijo);
+                    }
+                    else
+                    {
+                        lata.Update(deltaFijo);
+                        if (lata.MovementComponent.position.Y > Raylib.GetScreenHeight())
+                        {
+                            lata.setInactive();
+                        }
                     }
                 }
             }
