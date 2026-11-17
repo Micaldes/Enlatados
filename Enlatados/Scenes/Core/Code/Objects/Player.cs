@@ -13,6 +13,7 @@ public class Player : GameObject, ISubject<EventId>
     {
 
         comando = new ShootCommand(this);
+        //Si metemos recarga usamos otro comando
         // texture = Raylib.LoadTexture("../img/Cursor.png");
         InputComponent = new PlayerInputComponent(this);   
         MovementComponent = new PlayerMovementComponent(position, this);
